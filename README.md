@@ -53,6 +53,12 @@ Browser: shows prediction + sentence, speaks via Web Speech API
 
 ## Installation
 
+### Netlify frontend
+
+The React frontend starts at `src/main.jsx`. Netlify installs the locked npm dependencies and publishes the Vite output from `dist` using `netlify.toml`.
+
+Netlify hosts the frontend, not the Python translation server. Set `VITE_TRANSLATION_WS_URL` to the separately hosted server's secure WebSocket endpoint ending in `/ws/stream` before deploying to enable translation. Without a reachable server, the frontend shows a camera preview and an explicit connection status rather than simulated translations. During translation, camera frames are sent to the configured server. Local Vite development uses the existing `/ws` proxy to port 8000 by default.
+
 ```bash
 python -m venv .venv
 # Windows:  .venv\Scripts\activate
